@@ -49,9 +49,30 @@
             padding: 20px;
             margin: 10px; /* Tạo khoảng cách giữa các phần tử */
         }
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: explode 1.5s ease-out forwards;
+        }
+        @keyframes explode {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            80% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
-<body class="bg-pink-100 flex items-center justify-center min-h-screen">
+<body class="bg-pink-100 flex items-center justify-center min-h-screen relative">
     <div id="envelope" class="bg-white p-8 rounded-lg shadow-lg text-center max-w-lg">
         <img alt="A decorative heart image" class="item mx-auto mb-4 heart-beat" height="100" src="https://storage.googleapis.com/a1aa/image/eDczQ6qg5K2lGSkvv3KefkqD9L2OfIgzLPEajHZ1jTPLeRhfE.jpg" width="100"/>
         <h1 class=" item text-4xl text-red-500 mb-4">Open the Letter</h1>
@@ -84,12 +105,62 @@
             </a>
         </div>
     </div>
+
+    <!-- Pháo hoa -->
+    <div id="fireworks-container" class="absolute inset-0 z-10 pointer-events-none"></div>
+
     <script>
         function openLetter() {
             document.getElementById('envelope').classList.add('hidden');
             const letter = document.getElementById('letter');
             letter.classList.remove('hidden');
             letter.classList.add('slide-down');
+            launchFireworks();
+        }
+
+        // Hàm để tạo hiệu ứng pháo hoa liên tục
+        function launchFireworks() {
+            setInterval(() => {
+                createFirework();
+            }, 500); // Mỗi 500ms tạo một pháo hoa
+        }
+
+        // Mảng các màu sắc pháo hoa
+        const fireworkColors = [
+            "radial-gradient(circle, #ffdd00, #ff4500)", // Vàng - Đỏ
+            "radial-gradient(circle, #b13198, #690f51)", // Tím - Đỏ đậm
+            "radial-gradient(circle, #ff6347, #ff4500)", // Cà chua - Đỏ cam
+            "radial-gradient(circle, #40e0d0, #00bfff)", // Xanh ngọc - Xanh da trời
+            "radial-gradient(circle, #ff1493, #ff69b4)", // Hồng đậm - Hồng sáng
+            "radial-gradient(circle, #ffff00, #ffd700)", // Vàng sáng - Vàng kim
+            "radial-gradient(circle, #7fffd4, #20b2aa)", // Xanh biển sáng - Xanh lục nhạt
+            "radial-gradient(circle, #ff4500, #b22222)", // Đỏ cam - Đỏ tía
+            "radial-gradient(circle, #8a2be2, #4b0082)", // Tím đậm - Indigo
+            "radial-gradient(circle, #ff7f50, #ff6347)", // Đỏ cam - Cà chua
+            "radial-gradient(circle, #32cd32, #228b22)"  // Xanh lá cây - Xanh lục đậm
+        ];
+
+        // Hàm tạo một pháo hoa mới với màu sắc ngẫu nhiên từ mảng
+        function createFirework() {
+            const firework = document.createElement('div');
+            // Chọn màu ngẫu nhiên từ mảng
+            const randomColor = fireworkColors[Math.floor(Math.random() * fireworkColors.length)];
+            firework.style.background = randomColor;
+            firework.classList.add('firework');
+            
+            // Tạo vị trí ngẫu nhiên cho pháo hoa
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            firework.style.left = `${x}px`;
+            firework.style.top = `${y}px`;
+
+            // Thêm pháo hoa vào container
+            document.getElementById('fireworks-container').appendChild(firework);
+
+            // Xóa pháo hoa sau khi nổ
+            setTimeout(() => {
+                firework.remove();
+            }, 1500); // Sau 1.5s pháo hoa sẽ biến mất
         }
     </script>
 </body>
