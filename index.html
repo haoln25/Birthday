@@ -5,7 +5,6 @@
     <title>Love Letter</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap" rel="stylesheet"/>
     <style>
         body {
             font-family: 'Great Vibes', cursive;
@@ -37,13 +36,26 @@
                 opacity: 1;
             }
         }
+        .bg-white {
+            background-color: red;
+        }
+        #envelope{
+            background-color:#fff;
+            margin-top:30px;
+            width:auto;
+            height:auto;
+        }
+        .item{
+            padding: 20px;
+            margin: 10px; /* Tạo khoảng cách giữa các phần tử */
+        }
     </style>
 </head>
 <body class="bg-pink-100 flex items-center justify-center min-h-screen">
     <div id="envelope" class="bg-white p-8 rounded-lg shadow-lg text-center max-w-lg">
-        <img alt="A decorative heart image" class="mx-auto mb-4 heart-beat" height="100" src="https://storage.googleapis.com/a1aa/image/eDczQ6qg5K2lGSkvv3KefkqD9L2OfIgzLPEajHZ1jTPLeRhfE.jpg" width="100"/>
-        <h1 class="text-4xl text-red-500 mb-4">Open the Letter</h1>
-        <button class="bg-red-500 text-white px-4 py-2 rounded" onclick="openLetter()">Open</button>
+        <img alt="A decorative heart image" class="item mx-auto mb-4 heart-beat" height="100" src="https://storage.googleapis.com/a1aa/image/eDczQ6qg5K2lGSkvv3KefkqD9L2OfIgzLPEajHZ1jTPLeRhfE.jpg" width="100"/>
+        <h1 class=" item text-4xl text-red-500 mb-4">Open the Letter</h1>
+        <button class=" item openbtn bg-red-500 text-white px-4 py-2 rounded" onclick="openLetter()">Open</button>
     </div>
     <div id="letter" class="bg-white p-8 rounded-lg shadow-lg text-center max-w-lg hidden">
         <img alt="A decorative heart image" class="mx-auto mb-4 heart-beat" height="100" src="https://storage.googleapis.com/a1aa/image/eDczQ6qg5K2lGSkvv3KefkqD9L2OfIgzLPEajHZ1jTPLeRhfE.jpg" width="100"/>
